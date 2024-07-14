@@ -111,7 +111,6 @@ class PostController extends Controller
             $post = Post::findOrFail($request->post_id);
             $user = Auth::user();
 
-
             //user not allowed to report his own post
             if ($user->id === $post->user_id) {
                 return response()->json(['message' => 'You cannot report your own post.'], 403);
