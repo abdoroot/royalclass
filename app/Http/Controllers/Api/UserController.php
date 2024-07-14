@@ -40,9 +40,6 @@ class UserController extends Controller
         } catch (ValidationException $e) {
             // 422 Unprocessable Content
             return response()->json(['message' => $e->getMessage()], 422);
-        } catch (ThrottleRequestsException $e) {
-            // throttle
-            return response()->json(['message' => 'Too Many Attempts.'], 429);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Login failed. Please try again later.'], 500);
         }
