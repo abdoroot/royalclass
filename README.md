@@ -43,30 +43,29 @@ The Postman collection is attached to this project. You can use it to test the A
 ## Running Tests
 
 To run the tests, use the following command:
-
-        ```sh
+        
         php artisan test --verbose
-        ```
+
 
 ## API Endpoints
 # Authentication
 Login: POST /api/login
 
 # Admin Routes (requires auth:sanctum and admin middleware)
-List Users: GET /api/admin/users
-Create User: POST /api/admin/users
-Get User: GET /api/admin/users/{id}
-Update User: PUT /api/admin/users/{id}
-Delete User: DELETE /api/admin/users/{id}
-Post List: POST /api/admin/post-list
+- List Users: GET /api/admin/users
+- Create User: POST /api/admin/users
+- Get User: GET /api/admin/users/{id}
+- Update User: PUT /api/admin/users/{id}
+- Delete User: DELETE /api/admin/users/{id}
+- Post List: POST /api/admin/post-list
 
 # User Routes (requires auth:sanctum and check.notadmin middleware)
-List Posts: GET /api/posts
-Create Post: POST /api/posts
-Get Post: GET /api/posts/{id}
-Update Post: PUT /api/posts/{id}
-Delete Post: DELETE /api/posts/{id}
-Report Post: POST /api/report
+- List Posts: GET /api/posts
+- Create Post: POST /api/posts
+- Get Post: GET /api/posts/{id}
+- Update Post: PUT /api/posts/{id}
+- Delete Post: DELETE /api/posts/{id}
+- Report Post: POST /api/report
 User Details
 Get Authenticated User: GET /api/user
 
