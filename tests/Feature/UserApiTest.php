@@ -58,7 +58,7 @@ class UserApiTest extends TestCase
     }
 
     /** @test */
-    public function user_can_create_post()
+    public function can_create_post_with_valid_content()
     {
         $faker = Faker::create();
 
@@ -92,6 +92,39 @@ class UserApiTest extends TestCase
         $this->assertDatabaseHas('posts', [
             'title' => $postData['title'],
         ]);
+    }
+
+
+    /** @test */
+    public function cannot_create_post_with_bullying_content()
+    {
+        $faker = Faker::create();
+
+        // Create a regular user
+        $user = User::factory()->create([
+            'name' => 'Regular User',
+            'email' =>  $faker->unique()->safeEmail,
+            'password' => bcrypt('password123'),
+            'is_admin' => false,
+        ]);
+
+        // Authenticate as regular user to get the token
+        $response = $this->postJson('/api/login', [
+            'email' => $user->email,
+            'password' => 'password123',
+        ]);
+
+        $response->assertStatus(200);
+        $token = $response['user']['api_token'];
+
+        // Create a new post using the obtained token
+        $postData = [
+            'title' => 'Sample Post',
+            'content' => 'you are stupid.',
+        ];
+
+        $response = $this->withHeader('Authorization', "Bearer $token")->postJson('/api/posts', $postData);
+        $response->assertStatus(422);
     }
 
     /** @test */
