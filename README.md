@@ -6,13 +6,19 @@
     ```sh
     composer install
     ```
-
-2. Run the migrations:
+2. Copy the .env.example file to .env:
+    ```sh
+    cp .env.example .env
+    ```
+3. Generate the application key:
+    ```sh
+    php artisan key:generate
+    ```  
+4. Run the migrations:
     ```sh
     php artisan migrate
     ```
-
-3. Seed the database with initial users:
+5. Seed the database with initial users:
     ```sh
     php artisan db:seed --class=UsersTableSeeder
     ```
